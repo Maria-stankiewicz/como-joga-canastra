@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <img id="banner" src="banner.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animação de Cartas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <canvas id="gameCanvas" width="900" height="150"></canvas>
+        <p class= paragrafo1>O jogador deverá pegar a carta de cima do lixo, pô-la de lado, baixar as cartas da mão a serem utilizadas e, só após, recolher as demais cartas do lixo, diretamente a mão ou virando-as para baixo. Se a dupla que já pegou o morto tornar a bater, terminará a partida. Para isso precisa-se de pelo menos uma canastra limpa..</p>
+      <img src="images.png" class="canastralimpa">
+        <p class= paragrafo2>A *canastra limpa* é uma sequência de 7 cartas ou mais do mesmo naipe, sem a utilização de curingas¹. Em contraste, a **canastra suja** é formada com a inclusão de um ou mais curingas¹. Na pontuação, a canastra limpa vale 200 pontos, enquanto a canastra suja vale 100 pontos¹</p>
+        <p class= paragrafo3>Você pode personalizar a animação das cartas, adicionar mais funcionalidades e ajustar o layout conforme necessário.</p>
+      <p class= paragrafo4>Você pode personalizar a animação das cartas, adicionar mais funcionalidades e ajustar o layout conforme necessário.</p>
+    </div>
+    <img src="images.png" class="canastralimpa">
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const cardWidth = 100;
+        const cardHeight = 150;
+        const cardSpeed = 2;
+
+        // Array de imagens de cartas (substitua por suas imagens)
+        const cardImages = [
+            'asdecopas.png',
+            'asdepaus.png',
+            'reis.png',
+            'asdepaus.png'
+        ];
+
+        // Carregar imagens das cartas
+        const cards = [];
+        let loadedImages = 0;
+
+        cardImages.forEach((src, index) => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loadedImages++;
+                if (loadedImages === cardImages.length) {
+                    startAnimation();
+                }
+            };
+            cards.push(img);
+        });
+
+        function drawCard(img, x, y) {
+            ctx.drawImage(img, x, y, cardWidth, cardHeight);
+        }
+
+        function startAnimation() {
+            const cardCount = 5;
+            const cardY = 0; // Vertical position for cards in canvas height
+            const cardsData = Array.from({ length: cardCount }, (_, i) => ({
+                img: cards[i % cards.length],
+                x: i * (cardWidth + 10), // Initial x position
+                y: cardY
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpa o canvas
+
+                cardsData.forEach(cardData => {
+                    drawCard(cardData.img, cardData.x, cardData.y);
+                    cardData.x += cardSpeed; // Move a carta
+                    if (cardData.x > canvas.width) {
+                        cardData.x = -cardWidth; // Reposiciona a carta quando sai da tela
+                    }
+                });
+
+                requestAnimationFrame(animate); // Solicita o próximo quadro da animação
+            }
+
+            animate(); // Inicia a animação
+        }
+    </script>
+</body>
+</html>

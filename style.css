@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    border: 1px solid #000;
+    margin-bottom: 20px; /* Espaço entre o canvas e os parágrafos */
+}
+
+p {
+    margin: 10px 0;
+    max-width: 800px;
+    tign: center;
+}
+
+#banner {
+    width: 100%; 
+    height: auto;
+    display: block; 
+    margin: 0 auto; 
+}
+
+.canastralimpa {
+    display: inline-block;  
+    width: 20%; 
+    text-align: center;
+    margin-left: 5px;
+    }
+
+.paragrafo1 {
+  display:inline-block;
+  vertical-align:left;
+  text-align: center;
+  font-style: bolder;
+  font-size:30px;
+  color: black;
+}
+
+.paragrafo2 {
+  text-align: left;
+  font-style: bolder;
+  color: black;
+}
+
+.paragrafo3 {
+  text-align: center;
+  font-style: italic;
+  color: #CDDC39;
+}
+
+.paragrafo4 {
+  text-align: left;
+  font-family: "Times New Roman", Times, serif;
+  color: #009688;  
+} 
+
+.canastralimpa1 {
+    display: inline-block;  
+    width: 20%; 
+    text-align: center;
+    margin-left: 5px;
+}
